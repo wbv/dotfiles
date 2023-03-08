@@ -1,0 +1,12 @@
+[user]
+	name = Walter B. Vaughan
+	email = wbv@users.noreply.github.com
+
+[core]
+	editor = vim
+
+[merge]
+	tool = vimdiff
+
+[init]
+	defaultBranch = main

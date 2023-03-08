@@ -22,3 +22,7 @@ alias diff='diff --color=auto'
 # make ssh connections use a sane default for term capabilities
 # (most destinations don't recognize TERM=foot)
 alias ssh='TERM=xterm-256color COLORTERM=truecolor ssh'
+
+if [ -r "$HOME/.env" ]; then
+	source "$HOME/.env"
+fi

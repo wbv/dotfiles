@@ -3,7 +3,7 @@
 # assumes you have:
 #   foot (terminal)
 #   Fira Code (font)
-#   rofi (application launcher)
+#   wofi (application launcher)
 #   swaylock (screen locker)
 #   slurp, grimshot, wl-clipboard (printscreen)
 #
@@ -48,10 +48,14 @@ input "type:keyboard" {
 	# dmenu
 	#bindsym $mod+d exec dmenu_path | dmenu | xargs swaymsg exec --
 	# rofi
-	bindsym $mod+d exec swaymsg "exec rofi -show run"
+	#bindsym $mod+d exec swaymsg "exec rofi -show run"
 	# rofi - applications menu
-	bindsym $mod+Shift+d exec swaymsg "exec rofi -show drun"
-	bindsym XF86Search exec swaymsg "exec rofi -show drun"
+	#bindsym $mod+Shift+d exec swaymsg "exec rofi -show drun"
+	#bindsym XF86Search exec swaymsg "exec rofi -show drun"
+	# wofi - wayland applications menu
+	bindsym $mod+d       exec swaymsg "exec wofi --show=run"
+	bindsym $mod+Shift+d exec swaymsg "exec wofi --show=drun"
+	bindsym XF86Search   exec swaymsg "exec wofi --show=drun"
 
 	# Drag floating windows by holding down $mod and left mouse button.
 	# Resize them with right mouse button + $mod.
@@ -228,15 +232,27 @@ default_floating_border pixel 2
 client.background                      #ffffffb0
 client.focused             #b0b0b0d0   #eeeeeed0    #222222     #d0d0d0     #676767
 client.focused_inactive    #33333370   #aaaaaa90    #222222     #505050     #4f4f4f
-client.focused_tab_title   #33333370   #34343490    #222222
+#client.focused_tab_title   #33333370   #34343490    #222222
 client.unfocused           #33333330   #22222280    #aaaaaa     #2d2d2d     #222222
 client.urgent              #af343af0   #900000ff    #ffffff     #900000     #900000
 
 # most windows need no titlebar
 for_window [app_id="foot"] border pixel 2
 
+# gtk-3.0 dark theme
+exec_always {
+	gsettings set org.gnome.desktop.interface gtk-theme    'Adwaita'
+	gsettings set org.gnome.desktop.interface icon-theme   'Adwaita'
+	gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+	gsettings set org.gnome.desktop.interface font-name    'Cantarell 10'
+	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+}
+
 ### System-wide customizations
 include /etc/sway/config.d/*
+
+# tell Firefox not to show me this window
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
 
 # per-machine customizations
 include $HOME/.config/sway/`hostname`.config

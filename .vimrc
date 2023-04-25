@@ -34,7 +34,7 @@ filetype plugin indent on
 set list
 "set listchars=tab:┊◦,trail:▚
 "set listchars=tab:┊⸱,trail:▚
-set listchars=trail:▚,nbsp:▚,tab:┊\\x20,lead:⸱
+set listchars=trail:▚,nbsp:▚,tab:┊⸱
 
 highlight SpecialKey ctermfg=DarkGray
 

@@ -204,24 +204,25 @@ font pango:FiraCode SemiBold 9
 # add gaps between windows
 gaps inner 10
 
-# Status Bar
+### Status Bar
 #  Read `man 5 sway-bar` for more information about this section.
-bar {
-	position bottom
-
-	# shows the current date and time.
-	status_command while date +'%Y-%m-%d %I:%M:%S %p' ; do sleep 1; done
-
-	colors {
-		statusline #f0f0f0f0
-		background #111111a0
-		#  item            border     background text
-		focused_workspace  #e2e2e2d0  #d0d0d0b0  #000000f0
-		urgent_workspace   #ffe2e2d0  #ff4040c0  #d2d2d2f0
-		active_workspace   #e2e2e280  #d0d0d030  #d2d2d2f0
-		inactive_workspace #32323220  #32323220  #d2d2d2f0
-	}
-}
+#bar {
+#	position bottom
+#
+#	# shows the current date and time.
+#	status_command while date +'%Y-%m-%d %I:%M:%S %p' ; do sleep 1; done
+#
+#	colors {
+#		statusline #f0f0f0f0
+#		background #111111a0
+#		#  item            border     background text
+#		focused_workspace  #e2e2e2d0  #d0d0d0b0  #000000f0
+#		urgent_workspace   #ffe2e2d0  #ff4040c0  #d2d2d2f0
+#		active_workspace   #e2e2e280  #d0d0d030  #d2d2d2f0
+#		inactive_workspace #32323220  #32323220  #d2d2d2f0
+#	}
+#}
+## note: statusbar moved to per-device config
 
 ### Titlebars, etc
 default_border normal

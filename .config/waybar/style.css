@@ -81,6 +81,9 @@ window#waybar.solo {
 #workspaces {
     margin: 0 0;
 }
+#window {
+    margin-left: 4px;
+}
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {

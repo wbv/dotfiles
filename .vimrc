@@ -4,9 +4,9 @@
 
 " load any machine-specific customizations here
 "   (reads config from ~/.vim/$hostname.vim)
-let hostnamecfg = '~/.vim/' . system('hostname')[:-2] . '.vim'
+let hostnamecfg = $HOME . '/.vim/' . hostname() . '.vim'
 if filereadable(hostnamecfg)
-	source hostnamecfg
+	execute 'source ' . hostnamecfg
 endif
 
 

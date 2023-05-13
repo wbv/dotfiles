@@ -1,0 +1,18 @@
+{
+	"languageserver": {
+		"rust": {
+			"command": "rust-analyzer",
+			"filetypes": ["rust"],
+			"rootPatterns": ["Cargo.toml"],
+			"initializationOptions": {
+				"inlayHints": {
+					"typeHints": false,
+					"parameterHints": false,
+					"bindingModeHints": false,
+					"chainingHints": false,
+					"closingBraceHints": false
+				}
+			}
+		}
+	}
+}

@@ -42,20 +42,13 @@ input "type:keyboard" {
 	bindsym $mod+Shift+q kill
 
 	# Start your launcher
-	# Note: pass the final command to swaymsg so that the resulting window can be opened
-	# on the original workspace that the command was run on.
-	#
-	# dmenu
-	#bindsym $mod+d exec dmenu_path | dmenu | xargs swaymsg exec --
-	# rofi
-	#bindsym $mod+d exec swaymsg "exec rofi -show run"
-	# rofi - applications menu
-	#bindsym $mod+Shift+d exec swaymsg "exec rofi -show drun"
-	#bindsym XF86Search exec swaymsg "exec rofi -show drun"
-	# wofi - wayland applications menu
-	bindsym $mod+d       exec swaymsg "exec wofi --show=run"
-	bindsym $mod+Shift+d exec swaymsg "exec wofi --show=drun"
-	bindsym XF86Search   exec swaymsg "exec wofi --show=drun"
+	#   Note: pass the final command to swaymsg so that the resulting window can be opened
+	#   on the original workspace that the command was run on.
+	# wofi
+	bindsym $mod+d exec swaymsg "exec wofi --show run"
+	# wofi - applications menu
+	bindsym $mod+Shift+d exec swaymsg "exec wofi --show drun"
+	bindsym XF86Search exec swaymsg "exec wofi --show drun"
 
 	# Drag floating windows by holding down $mod and left mouse button.
 	# Resize them with right mouse button + $mod.
@@ -66,10 +59,6 @@ input "type:keyboard" {
 
 	# Reload the configuration file
 	bindsym $mod+Shift+c reload
-
-	# Exit sway (logs you out of your Wayland session) -- disabled
-	#bindsym $mod+Shift+e \
-	#	exec swaynag -t warning -m 'Log out?.' -B 'Yes' 'swaymsg exit'
 
 	# Lock the screen
 	bindsym $mod+Delete exec swaylock -f
@@ -189,28 +178,6 @@ bindsym $mod+r mode "resize"
 
 ### font and visual customization
 font pango:FiraCode SemiBold 9
-# add gaps between windows
-gaps inner 10
-
-### Status Bar
-#  Read `man 5 sway-bar` for more information about this section.
-#bar {
-#	position bottom
-#
-#	# shows the current date and time.
-#	status_command while date +'%Y-%m-%d %I:%M:%S %p' ; do sleep 1; done
-#
-#	colors {
-#		statusline #f0f0f0f0
-#		background #111111a0
-#		#  item            border     background text
-#		focused_workspace  #e2e2e2d0  #d0d0d0b0  #000000f0
-#		urgent_workspace   #ffe2e2d0  #ff4040c0  #d2d2d2f0
-#		active_workspace   #e2e2e280  #d0d0d030  #d2d2d2f0
-#		inactive_workspace #32323220  #32323220  #d2d2d2f0
-#	}
-#}
-## note: statusbar moved to per-device config
 
 ### Titlebars, etc
 default_border normal
@@ -221,7 +188,7 @@ default_floating_border pixel 2
 client.background                      #ffffffb0
 client.focused             #b0b0b0d0   #eeeeeed0    #222222     #d0d0d0     #676767
 client.focused_inactive    #33333370   #aaaaaa90    #222222     #505050     #4f4f4f
-#client.focused_tab_title   #33333370   #34343490    #222222
+client.focused_tab_title   #33333370   #34343490    #222222
 client.unfocused           #33333330   #22222280    #aaaaaa     #2d2d2d     #222222
 client.urgent              #af343af0   #900000ff    #ffffff     #900000     #900000
 

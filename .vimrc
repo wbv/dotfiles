@@ -9,6 +9,9 @@ if filereadable(hostnamecfg)
 	execute 'source ' . hostnamecfg
 endif
 
+" allow modelines
+set modeline
+set modelines=5
 
 " syntax highlighting, colors
 syntax on
@@ -37,6 +40,7 @@ set list
 set listchars=trail:▚,nbsp:▚,tab:┊⸱
 
 highlight SpecialKey ctermfg=DarkGray
+
 
 """ per-filetype whitespace customizations, as desired
 

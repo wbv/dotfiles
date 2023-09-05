@@ -8,6 +8,7 @@ if [ -f "$PYENV_ROOT/completions/pyenv.zsh" ]; then
 	. "$PYENV_ROOT/completions/pyenv.zsh"
 fi
 
+# add zfunc files stored in ~/.zsh/zfunc (e.g. python-poetry's completions)
+fpath+="$HOME/.zsh/zfunc"
 
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit -i

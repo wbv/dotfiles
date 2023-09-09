@@ -4,7 +4,7 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FiraCode, Roboto, Helvetica, Arial, sans-serif;
+    font-family: FiraCode, Font Awesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
     min-height: 20px;
 }

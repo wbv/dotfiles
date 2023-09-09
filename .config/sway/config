@@ -67,7 +67,7 @@ input "type:keyboard" {
 	# Reload the configuration file
 	bindsym $mod+Shift+c reload
 
-	# Exit sway (logs you out of your Wayland session) -- disabled
+	# DISABLED: Exit sway (logs you out of your Wayland session)
 	#bindsym $mod+Shift+e \
 	#	exec swaynag -t warning -m 'Log out?.' -B 'Yes' 'swaymsg exit'
 
@@ -86,7 +86,7 @@ input "type:keyboard" {
 	bindsym $mod+$down focus down
 	bindsym $mod+$up focus up
 	bindsym $mod+$right focus right
-	# Or use $mod+[up|down|left|right] (Disabled, uncomment to enable)
+	# DISABLED: Or use $mod+[up|down|left|right]
 	#bindsym $mod+Left focus left
 	#bindsym $mod+Down focus down
 	#bindsym $mod+Up focus up
@@ -97,7 +97,7 @@ input "type:keyboard" {
 	bindsym $mod+Shift+$down move down
 	bindsym $mod+Shift+$up move up
 	bindsym $mod+Shift+$right move right
-	# Ditto, with arrow keys (Disabled, uncomment to enable)
+	# DISABLED: Ditto, with arrow keys
 	#bindsym $mod+Shift+Left move left
 	#bindsym $mod+Shift+Down move down
 	#bindsym $mod+Shift+Up move up
@@ -170,16 +170,15 @@ mode "resize" {
 	# right will grow the containers width
 	# up will shrink the containers height
 	# down will grow the containers height
-	bindsym $left resize shrink width 10px
-	bindsym $down resize grow height 10px
-	bindsym $up resize shrink height 10px
-	bindsym $right resize grow width 10px
-
-	# Ditto, with arrow keys (Disabled, uncomment to enable)
-	#bindsym Left resize shrink width 10px
-	#bindsym Down resize grow height 10px
-	#bindsym Up resize shrink height 10px
-	#bindsym Right resize grow width 10px
+	bindsym $left  resize shrink width  5px
+	bindsym $right resize grow   width  5px
+	bindsym $down  resize grow   height 5px
+	bindsym $up    resize shrink height 5px
+	# shift+direction for BIG moves
+	bindsym Shift+$left  resize shrink width  50px
+	bindsym Shift+$right resize grow   width  50px
+	bindsym Shift+$down  resize grow   height 50px
+	bindsym Shift+$up    resize shrink height 50px
 
 	# Return to default mode
 	bindsym Return mode "default"
@@ -237,11 +236,14 @@ exec_always {
 	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 }
 
+# tell Firefox not to create the sharing indicator thing, and for title-less
+# windows to float by default (should catch most popups?)
+for_window [app_id="Firefox*" title="Firefox — Sharing Indicator"] kill
+for_window [app_id="Firefox*" title="^$"] floating enable
+
+
 ### System-wide customizations
 include /etc/sway/config.d/*
-
-# tell Firefox not to show me this window
-for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
 
 # per-machine customizations
 include $HOME/.config/sway/`hostname`.config

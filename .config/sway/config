@@ -208,7 +208,8 @@ exec_always {
 include /etc/sway/config.d/*
 
 # tell Firefox not to show me this window
-for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
+for_window [app_id="[Ff]irefox.*" title="Firefox — Sharing Indicator"] kill
+for_window [app_id="[Ff]irefox.*" title="^$"] floating enable
 
 # per-machine customizations
 include $HOME/.config/sway/`hostname`.config

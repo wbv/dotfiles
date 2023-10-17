@@ -203,21 +203,13 @@ exec_always {
 	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 }
 
-# tell Firefox not to create the sharing indicator thing, and for title-less
-# windows to float by default (should catch most popups?)
-for_window [app_id="Firefox*" title="Firefox — Sharing Indicator"] kill
-for_window [app_id="Firefox*" title="^$"] floating enable
-
-
 ### System-wide customizations
 include /etc/sway/config.d/*
 
-<<<<<<< HEAD
-# tell Firefox not to show me this window
+# tell Firefox not to show the sharing indicator "window"
 for_window [app_id="[Ff]irefox.*" title="Firefox — Sharing Indicator"] kill
+# title-less Firefox windows float by default (should apply to most popups?)
 for_window [app_id="[Ff]irefox.*" title="^$"] floating enable
 
-=======
->>>>>>> origin/hackney
 # per-machine customizations
 include $HOME/.config/sway/`hostname`.config

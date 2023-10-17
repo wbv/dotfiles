@@ -14,6 +14,7 @@
 [init]
 	defaultBranch = main
 
-[credential "https://git.overleaf.com/"]
-	user = walter.b.vaughan@gmail.com
+# just save login details for overleaf bc no ssh :(
+[credential "https://git.overleaf.com"]
+	username = walter.b.vaughan@gmail.com
 	helper = store

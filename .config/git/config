@@ -13,3 +13,7 @@
 
 [init]
 	defaultBranch = main
+
+[credential "https://git.overleaf.com/"]
+	user = walter.b.vaughan@gmail.com
+	helper = store

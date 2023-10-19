@@ -4,8 +4,8 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 
 " disabled Pathogen plugins
-let g:pathogen_disabled = ['ale', 'coc.nvim']
-" source ~/.vim/coc.config.vim
+let g:pathogen_disabled = ['ale']
+source ~/.vim/coc.config.vim
 
 execute pathogen#infect()
 

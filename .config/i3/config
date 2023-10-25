@@ -1,0 +1,213 @@
+# wbv's config for i3
+#
+# assumes you have:
+#   alacritty (terminal)
+#   Fira Code (font)
+#   rofi (application launcher)
+#   i3lock, xss-lock (screen locking)
+
+
+### Variables
+
+# Primary modifier key.
+# Mod4 = Logo key
+# Mod1 = Alt
+set $mod Mod1
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Your preferred terminal emulator
+set $term alacritty
+
+
+##### Key bindings
+
+# disable Caps Lock key
+exec --no-startup-id setxkbmap -option caps:none
+
+### Basics:
+	# Start a terminal
+	bindsym $mod+Return exec $term
+
+	# Start a terminal in the same window as the current one
+	bindsym $mod+Shift+Return exec $term --working-directory "$(xcwd)"
+
+	# Kill focused window
+	bindsym $mod+Shift+q kill
+
+	# Start your launcher
+	#   Note: pass the final command to i3-msg so that the resulting window can be opened
+	#   on the original workspace that the command was run on.
+	# rofi
+	bindsym $mod+d exec rofi -show run
+	# rofi - applications menu
+	bindsym $mod+Shift+d exec rofi -show drun
+	bindsym XF86Search exec rofi -show drun
+
+	# Drag floating windows by holding down $mod and left mouse button.
+	# Resize them with right mouse button + $mod.
+	# Despite the name, also works for non-floating windows.
+	# Change normal to inverse to use left mouse button for resizing and right
+	# mouse button for dragging.
+	floating_modifier $mod
+
+	# Reload the configuration file
+	bindsym $mod+Shift+c reload
+
+	# Lock the screen
+	bindsym $mod+Delete exec loginctl lock-session
+
+	## Take a screenshot (requires maim, xclip, xdotool):
+	# select the area
+	bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+	# use current window
+	bindsym Ctrl+Print exec --no-startup-id maim --window "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+	# use the entire display
+	bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+	# save entire output in ~/Pictures/<timestamp>.png
+	bindsym Ctrl+Shift+Print exec --no-startup-id maim "$HOME/Pictures/$(date +%Y-%m-%d_%I:%M:%S%P).png"
+
+### Moving around:
+	# Move your focus around
+	bindsym $mod+$left focus left
+	bindsym $mod+$down focus down
+	bindsym $mod+$up focus up
+	bindsym $mod+$right focus right
+	# DISABLED: Or use $mod+[up|down|left|right]
+	#bindsym $mod+Left focus left
+	#bindsym $mod+Down focus down
+	#bindsym $mod+Up focus up
+	#bindsym $mod+Right focus right
+
+	# Move the focused window with the same, but add Shift
+	bindsym $mod+Shift+$left move left
+	bindsym $mod+Shift+$down move down
+	bindsym $mod+Shift+$up move up
+	bindsym $mod+Shift+$right move right
+	# DISABLED: Ditto, with arrow keys
+	#bindsym $mod+Shift+Left move left
+	#bindsym $mod+Shift+Down move down
+	#bindsym $mod+Shift+Up move up
+	#bindsym $mod+Shift+Right move right
+
+### Workspaces:
+	# Switch to workspace
+	bindsym $mod+1 workspace number 1
+	bindsym $mod+2 workspace number 2
+	bindsym $mod+3 workspace number 3
+	bindsym $mod+4 workspace number 4
+	bindsym $mod+5 workspace number 5
+	bindsym $mod+6 workspace number 6
+	bindsym $mod+7 workspace number 7
+	bindsym $mod+8 workspace number 8
+	bindsym $mod+9 workspace number 9
+	bindsym $mod+0 workspace number 10
+	# Move focused container to workspace
+	bindsym $mod+Shift+1 move container to workspace number 1
+	bindsym $mod+Shift+2 move container to workspace number 2
+	bindsym $mod+Shift+3 move container to workspace number 3
+	bindsym $mod+Shift+4 move container to workspace number 4
+	bindsym $mod+Shift+5 move container to workspace number 5
+	bindsym $mod+Shift+6 move container to workspace number 6
+	bindsym $mod+Shift+7 move container to workspace number 7
+	bindsym $mod+Shift+8 move container to workspace number 8
+	bindsym $mod+Shift+9 move container to workspace number 9
+	bindsym $mod+Shift+0 move container to workspace number 10
+	# Note: workspaces can have any name you want, not just numbers.
+	# We just use 1-10 as the default.
+
+### Layout stuff:
+	# You can "split" the current object of your focus with
+	# $mod+b or $mod+v, for horizontal and vertical splits
+	# respectively.
+	bindsym $mod+b splith
+	bindsym $mod+v splitv
+
+	# Switch the current container between different layout styles
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
+
+	# Make the current focus fullscreen
+	bindsym $mod+f fullscreen
+	bindsym $mod+Shift+f fullscreen global
+
+	# Toggle the current focus between tiling and floating mode
+	bindsym $mod+Shift+space floating toggle
+
+	# Swap focus between the tiling area and the floating area
+	bindsym $mod+space focus mode_toggle
+
+	# Move focus to the parent container
+	bindsym $mod+a focus parent
+
+### Scratchpad:
+	# Sway has a "scratchpad", which is a bag of holding for windows.
+	# You can send windows there and get them back later.
+
+	# Move the currently focused window to the scratchpad
+	bindsym $mod+Shift+minus move scratchpad
+
+	# Show the next scratchpad window or hide the focused scratchpad window.
+	# If there are multiple scratchpad windows, this command cycles through them.
+	bindsym $mod+minus scratchpad show
+
+### Resizing containers:
+mode "resize" {
+	# left will shrink the containers width
+	# right will grow the containers width
+	# up will shrink the containers height
+	# down will grow the containers height
+	bindsym $left  resize shrink width  5px
+	bindsym $right resize grow   width  5px
+	bindsym $down  resize grow   height 5px
+	bindsym $up    resize shrink height 5px
+	# shift+direction for BIG moves
+	bindsym Shift+$left  resize shrink width  50px
+	bindsym Shift+$right resize grow   width  50px
+	bindsym Shift+$down  resize grow   height 50px
+	bindsym Shift+$up    resize shrink height 50px
+
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### font and visual customization
+font pango:FiraCode SemiBold 9
+
+### Titlebars, etc
+default_border pixel 1
+default_floating_border pixel 2
+
+# Style:
+#       class            │ border    │ background │ text      │ indicator │ child_border │
+client.background                      #ffffffb0
+client.focused             #b0b0b0d0   #eeeeeed0    #222222     #d0d0d0     #676767
+client.focused_inactive    #33333370   #aaaaaa90    #222222     #505050     #4f4f4f
+client.focused_tab_title   #33333370   #34343490    #222222
+client.unfocused           #33333330   #22222280    #aaaaaa     #2d2d2d     #222222
+client.urgent              #af343af0   #900000ff    #ffffff     #900000     #900000
+
+# most windows need no titlebar
+#for_window [app_id="foot"] border pixel 2
+
+# gtk-3.0 dark theme
+exec_always gsettings set org.gnome.desktop.interface gtk-theme    'Adwaita'
+exec_always gsettings set org.gnome.desktop.interface icon-theme   'Adwaita'
+exec_always gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+exec_always gsettings set org.gnome.desktop.interface font-name    'Cantarell 10'
+exec_always gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+# tell Firefox not to show the sharing indicator "window"
+#for_window [app_id="[Ff]irefox.*" title="Firefox — Sharing Indicator"] kill
+# title-less Firefox windows float by default (should apply to most popups?)
+#for_window [app_id="[Ff]irefox.*" title="^$"] floating enable
+
+# per-machine customizations
+include $HOME/.config/i3/`hostname`.config

@@ -16,3 +16,6 @@
 [submodule ".vim/bundle/jsonc.vim"]
 	path = .vim/bundle/jsonc.vim
 	url = https://github.com/neoclide/jsonc.vim
+[submodule ".vim/bundle/earthly"]
+	path = .vim/bundle/earthly
+	url = github.com:earthly/earthly.vim.git

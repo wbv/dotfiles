@@ -63,7 +63,7 @@ if [ -r "$HOME/.pyenv" ]; then
 	}
 fi
 
-# wayland configuration
+# finally, include any per-host customizations
 if [ -r "$HOME/.config/$(hostname).profile" ]; then
 	. "$HOME/.config/$(hostname).profile"
 fi

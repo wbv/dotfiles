@@ -4,11 +4,13 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|
 zstyle ':completion:*' original true
 
 # pyenv completions
-if [ -f "$PYENV_ROOT/completions/pyenv.zsh" ]; then
+if [ -r "$PYENV_ROOT/completions/pyenv.zsh" ]; then
 	. "$PYENV_ROOT/completions/pyenv.zsh"
 fi
 
 # add zfunc files stored in ~/.zsh/zfunc (e.g. python-poetry's completions)
-fpath+="$HOME/.zsh/zfunc"
+if [ -x "$HOME/.zsh/zfunc" ]; then
+	fpath+="$HOME/.zsh/zfunc"
+fi
 
 autoload -Uz compinit && compinit -i

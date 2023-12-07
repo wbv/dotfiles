@@ -46,3 +46,6 @@ highlight SpecialKey ctermfg=DarkGray
 
 " TeX/LaTeX: two spaces
 autocmd Filetype tex setlocal shiftwidth=2 tabstop=2 expandtab textwidth=100
+
+" Rust customizations:
+"let g:rustfmt_autosave = 1 " DISABLED: I changed my mind
